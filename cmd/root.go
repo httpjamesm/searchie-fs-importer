@@ -29,7 +29,9 @@ type Dataset struct {
 }
 
 type DatasetResponse struct {
-	Dataset Dataset `json:"dataset"`
+	Data struct {
+		ID string `json:"id"`
+	} `json:"data"`
 }
 
 var (
@@ -77,7 +79,7 @@ var rootCmd = &cobra.Command{
 					return fmt.Errorf("error creating dataset: %s", resp.String())
 				}
 
-				datasetID = datasetResp.Dataset.ID
+				datasetID = datasetResp.Data.ID
 				fmt.Printf("Created dataset with ID: %s\n", datasetID)
 			} else {
 				return fmt.Errorf("dataset ID is required")
